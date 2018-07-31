@@ -1,0 +1,24 @@
+$font-path: "../assets/fonts";
+$font-family-md-base: "IRANSans_FA_Nnumber";
+$font-family-ios-base: "IRANSans_FA_Nnumber";
+$font-family-wp-base: "IRANSans_FA_Nnumber";
+$item-ios-divider-background: transparent;
+$item-md-divider-background: transparent;
+$item-wp-divider-background: transparent;
+$app-direction: rtl;
+
+
+@import "ionic.globals";
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
+@import "ionic.theme.default";
+@import "ionic.ionicons";
+@import "iransans";
+@import "/assets/webfonts/fontawesome.min.css";
+@import "/assets/webfonts/fa-light.min.css";

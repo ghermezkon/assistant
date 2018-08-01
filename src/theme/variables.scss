@@ -7,15 +7,15 @@ $item-md-divider-background: transparent;
 $item-wp-divider-background: transparent;
 $app-direction: rtl;
 
-
 @import "ionic.globals";
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #E6782B,
+  secondary:  #FCB919,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #455A64,
+  borderColor: rgb(247, 247, 247) 
 );
 @import "ionic.theme.default";
 @import "ionic.ionicons";

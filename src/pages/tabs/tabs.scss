@@ -1,0 +1,24 @@
+tabs-page{
+    a.tab-button[aria-selected="true"] > ion-icon.tab-button-icon{
+        position: fixed;
+        border-radius: 100% !important;
+        z-index:10001 !important;
+        width:50px !important;
+        height:60px !important;              
+    }
+    .ion-ios-bmi-icon-outline,
+    .ion-ios-bmi-icon,
+    .ion-md-bmi-icon,
+    .ion-md-bmi-icon-outline {
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size: contain;
+        background-image: url('../assets/imgs/bmi.png') !important;
+        z-index: 10001 !important;
+        //background-color: map-get($colors, dark);
+    }
+    .tabbar{
+        background-color: transparent !important;
+        padding-bottom:5px !important;  
+    }
+}

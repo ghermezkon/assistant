@@ -7,9 +7,8 @@ import { HomePage } from '../home/home';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
   tab1Root = HomePage;
-  constructor() {
-
-  }
+  //------------------------------------------------------
+  constructor() {}
+  //------------------------------------------------------
 }

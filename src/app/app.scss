@@ -27,3 +27,39 @@ body
     text-align: center;
 }
 //--------------------------------------------------------------------------
+.center{
+  display: flex;align-items: center;justify-content: center;
+}
+.title-text{
+  color: map-get($colors, light);
+  font-size:1.8rem;
+}
+.title-image{
+  width:100%;height:auto;max-width:48px;
+}
+.icon{
+  width:100%;height: auto; max-width:48px;
+}
+//--------------------------------------------------------------------------
+ion-navbar.toolbar{
+  direction:ltr;
+  text-align: right;
+}
+ion-navbar.toolbar > button{
+  text-align:right;
+  color:map-get($colors, light);
+}
+ion-navbar.toolbar > button > span > ion-icon::before{
+  content:'\f287';
+  color:map-get($colors, light);
+}
+button.back-button > span.button-inner > span.back-button-text{
+  color:map-get($colors, light);
+}
+//--------------------------------------------------------------------------
+ion-item.transparent  {
+  background: rgba(0, 0, 0, 0) !important;
+  border: none !important;
+  outline: none !important;
+  direction:rtl;
+}

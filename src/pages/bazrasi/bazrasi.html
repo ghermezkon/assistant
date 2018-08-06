@@ -13,21 +13,29 @@
     </ion-navbar>
 </ion-header>
 <ion-content style="background-color:#455A64;">
-    <ion-card style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;" no-padding no-margin>
+    <ion-card *ngIf="!show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
+        no-padding no-margin>
         <ion-card-header style="background: #E6782B;
                 background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
                 background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
-            <span>مشخصات فردی</span>
+            <span ion-text color="light">
+                <i class="fal fa-id-card"></i>
+            </span>
+            <span ion-text color="light">مشخصات فردی</span>
         </ion-card-header>
         <ion-card-content>
-            <ion-grid>
+            <ion-grid [formGroup]="baseForm">
                 <ion-row>
                     <ion-col>
                         <ion-item>
                             <ion-label floating>
                                 <i class="fal fa-sort-numeric-up"></i>
                                 کد ملی</ion-label>
-                            <ion-input type="number" text-center></ion-input>
+                            <ion-input type="number" formControlName="customer_code" text-center></ion-input>
+                            <ng-container *ngFor="let validation of validation_msg.melli">
+                                <div class="error-msg" *ngIf="baseForm.get('customer_code').hasError(validation.type) && 
+                                            (baseForm.get('customer_code').dirty || baseForm.get('customer_code').touched)">{{validation.message}}</div>
+                            </ng-container>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -37,7 +45,60 @@
                             <ion-label floating>
                                 <i class="fal fa-id-card"></i>
                                 نام و نام خانوادگی</ion-label>
-                            <ion-input text-right></ion-input>
+                            <ion-input text-right formControlName="customer_name"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row style="border-bottom:#455A64;">
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-phone"></i>
+                                شماره تماس</ion-label>
+                            <ion-input type="number" formControlName="customer_mobile" text-center></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-row float-right>
+            <ion-col>
+                <ion-label color="danger" style="font-size:1.2rem;padding-right:2em;">
+                    <span ion-text color="file">*</span>
+                    <span>
+                        تکمیل تمام اطلاعات الزامی است
+                    </span>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row float-left>
+            <button ion-button icon-end round clear [disabled]="baseForm.invalid" (click)="show_card = !show_card">
+                <span style="font-weight: bold;">مرحله بعد</span>
+                <ion-icon>
+                    <i class="fal fa-arrow-left" style="font-weight: bold;" ion-text color="danger"></i>
+                </ion-icon>
+            </button>
+        </ion-row>
+    </ion-card>
+    <ion-card *ngIf="show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
+        no-padding no-margin>
+        <ion-card-header style="background: #E6782B;
+                    background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
+                    background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+            <span ion-text color="light">
+                <i class="fal fa-id-card"></i>
+            </span>
+            <span ion-text color="light">شرح شکایت</span>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-file-alt"></i>
+                                عنوان شکایت</ion-label>
+                            <ion-input type="text" text-right></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -45,86 +106,29 @@
                     <ion-col>
                         <ion-item>
                             <ion-label floating>
-                                <i class="fal fa-phone"></i>
-                                شماره تماس</ion-label>
-                            <ion-input type="number" text-center></ion-input>
+                                <i class="fal fa-book-open"></i>
+                                متن شکایت</ion-label>
+                            <ion-textarea type="text" rows="10" text-right></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <button ion-button icon-end>
+                                <i class="fal fa-upload" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
+                                <span>فایل ضمیمه</span>
+                            </button>
                         </ion-item>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
-        <ion-footer style="background-color:red;">
-            <ion-item>
-                <button ion-button color="primary" ></button>
-            </ion-item>
-        </ion-footer>
     </ion-card>
-    <!-- <ion-grid>
-        <ion-row>
-            <ion-col col-6>
-                <ion-item>
-                    <ion-label floating>
-                        <i class="fal fa-sort-numeric-up"></i>
-                        کد ملی</ion-label>
-                    <ion-input type="number" text-center></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col col-6>
-                <ion-item>
-                    <ion-label floating>
-                        <i class="fal fa-phone"></i>
-                        شماره تماس</ion-label>
-                    <ion-input type="number" text-center></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col col-12>
-                <ion-item>
-                    <ion-label floating>
-                        <i class="fal fa-id-card"></i>
-                        نام و نام خانوادگی</ion-label>
-                    <ion-input text-right></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-item>
-                    <ion-label floating>
-                        <i class="fal fa-file-alt"></i>
-                        عنوان پیام</ion-label>
-                    <ion-input text-right></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-12>
-                <ion-item>
-                    <ion-label floating>
-                        <i class="fal fa-book-open"></i>
-                        متن پیام</ion-label>
-                    <ion-textarea rows="7" text-right></ion-textarea>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col text-right>
-                <button ion-button icon-start color="file">
-                    <i class="fal fa-file-image" style="padding-left:3px;"></i>
-                    الصاق فایل
-                </button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-            </ion-col>
-        </ion-row>
-    </ion-grid> -->
 </ion-content>
-<ion-footer no-border>
-    <button full block ion-button icon-start no-padding no-margin>
-        <i class="fal fa-save" style="padding-left:3px;"></i>
-        ذخیره و ارسال
+<ion-footer>
+    <button full block ion-button icon-start no-padding no-margin color="file">
+        <i class="fal fa-save" style="font-weight: bold;padding-left:3px;" ion-text color="secondary"></i>
+        <span>ذخیره و ارسال به بازرسی</span>
     </button>
 </ion-footer>

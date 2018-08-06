@@ -12,8 +12,54 @@
         </ion-grid>
     </ion-navbar>
 </ion-header>
-<ion-content>
-    <ion-grid>
+<ion-content style="background-color:#455A64;">
+    <ion-card style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;" no-padding no-margin>
+        <ion-card-header style="background: #E6782B;
+                background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
+                background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+            <span>مشخصات فردی</span>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-sort-numeric-up"></i>
+                                کد ملی</ion-label>
+                            <ion-input type="number" text-center></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-id-card"></i>
+                                نام و نام خانوادگی</ion-label>
+                            <ion-input text-right></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-phone"></i>
+                                شماره تماس</ion-label>
+                            <ion-input type="number" text-center></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-footer style="background-color:red;">
+            <ion-item>
+                <button ion-button color="primary" ></button>
+            </ion-item>
+        </ion-footer>
+    </ion-card>
+    <!-- <ion-grid>
         <ion-row>
             <ion-col col-6>
                 <ion-item>
@@ -74,10 +120,10 @@
             <ion-col>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 </ion-content>
 <ion-footer no-border>
-    <button full block ion-button icon-start  no-padding no-margin>
+    <button full block ion-button icon-start no-padding no-margin>
         <i class="fal fa-save" style="padding-left:3px;"></i>
         ذخیره و ارسال
     </button>

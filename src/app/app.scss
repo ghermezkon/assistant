@@ -40,6 +40,19 @@ body
 .icon{
   width:100%;height: auto; max-width:48px;
 }
+.error-msg{
+  color:map-get($colors, danger);
+  font-size:1.2rem;
+  padding-right:1.5em;
+} 
+.exam-arrow{
+  width:50px;height:auto;z-index:1002;
+  left:50%;position:fixed;transform: translate(-50%);
+  bottom:5%;
+}
+.toastCss{
+  text-align:center;
+}
 //--------------------------------------------------------------------------
 ion-navbar.toolbar{
   direction:ltr;
@@ -56,6 +69,15 @@ ion-navbar.toolbar > button > span > ion-icon::before{
 button.back-button > span.button-inner > span.back-button-text{
   color:map-get($colors, light);
 }
+// ion-alert > div.alert-wrapper{
+//   border-radius: 2px !important;
+// }
+// ion-alert > div.alert-wrapper >  div.alert-head{
+//   background-color:map-get($colors, primary) !important;
+//   color:map-get($colors, light) !important;
+//   border-top-left-radius: 2px !important;
+//   border-top-right-radius: 2px !important;
+// }
 //--------------------------------------------------------------------------
 ion-item.transparent  {
   background: rgba(0, 0, 0, 0) !important;

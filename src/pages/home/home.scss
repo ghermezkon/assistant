@@ -22,6 +22,14 @@ page-home {
             }
         }
     }
+    .bmi-icon{
+        width:100%;height:auto;max-width:36px;
+        background: #E6782B;
+        background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
+        background: linear-gradient(to right, #FCB919, #E6782B);
+        border-radius: 50%;width:100%;height:auto;max-width:54px;
+    }
+
     .border-left { border-left: solid 1px map-get($colors, borderColor); }
     .border-right { border-right: solid 1px map-get($colors, borderColor); }
     .border-bottom { border-bottom: solid 1px map-get($colors, borderColor); }

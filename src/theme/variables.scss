@@ -12,7 +12,8 @@ $app-direction: rtl;
 $colors: (
   primary:    #455A64,
   //primary:    #E6782B,
-  secondary:  #FCB919,
+  //secondary:  #FCB919,
+  secondary: #E6782B,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #455A64,
@@ -22,5 +23,4 @@ $colors: (
 @import "ionic.theme.default";
 @import "ionic.ionicons";
 @import "iransans";
-@import "/assets/webfonts/fontawesome.min.css";
-@import "/assets/webfonts/fa-light.min.css";
+

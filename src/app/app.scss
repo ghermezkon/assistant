@@ -15,6 +15,7 @@ body
   width: 100% !important;
   height: 100% !important;
   direction:rtl !important;
+  font-size: 0.7rem !important;
 }
 //-----------------IONIC Component-----------------------------------------
 .toolbar-background{
@@ -34,8 +35,12 @@ body
   color: map-get($colors, light);
   font-size:1.8rem;
 }
-.title-image{
-  width:100%;height:auto;max-width:48px;
+.title-image-logo{
+  padding-top: 10px;
+  width:100%;height:auto;max-width:100px;
+}
+.title-image-banner{
+  width:100%;height:auto;max-width:128px;
 }
 .icon{
   width:100%;height: auto; max-width:48px;
@@ -68,6 +73,19 @@ ion-navbar.toolbar > button > span > ion-icon::before{
 }
 button.back-button > span.button-inner > span.back-button-text{
   color:map-get($colors, light);
+}
+ion-loading.my-svg-loading {
+  .loading-wrapper {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+.action-sheet-title{
+  background: #E6782B !important;
+  background: -webkit-linear-gradient(to right, #FCB919, #E6782B) !important;
+  background: linear-gradient(to right, #FCB919, #E6782B) !important;
+  color: map-get($colors , light) !important;
+  text-align: center !important;
 }
 // ion-alert > div.alert-wrapper{
 //   border-radius: 2px !important;

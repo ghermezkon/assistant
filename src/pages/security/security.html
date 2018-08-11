@@ -1,0 +1,168 @@
+<ion-header>
+    <ion-navbar>
+        <ion-grid no-padding>
+            <ion-row>
+                <ion-col float-right class="title-text">
+                    <ion-label style="font-size:1.6rem;">
+                        ارتباط با واحد حراست
+                    </ion-label>
+                </ion-col>
+                <ion-col col-1 float-right>
+                    <img src="../assets/imgs/herasat.light.svg" style="width:100%;height:auto;max-width:24px;padding-top:0.65em;">
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+</ion-header>
+<ion-content style="background-color:#455A64;">
+    <ion-card *ngIf="!show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
+        no-padding no-margin>
+        <ion-card-header style="background: #E6782B;
+                background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
+                background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+            <span ion-text color="light">
+                <i class="fal fa-id-card" style="padding-left:3px;"></i>
+            </span>
+            <span ion-text color="light">مشخصات فردی</span>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid [formGroup]="baseForm">
+                <ion-row>
+                    <ion-col text-center color="danger" style="font-weight:bold;">
+                        <span style="word-wrap: normal;">
+                            اطلاعات ارسال شده در قسمت کاملاً محرمانه بوده و توسط افراد ذیصلاح بررسی خواهد شد.
+                        </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row style="border-bottom:#455A64;">
+                    <ion-col>
+                        <ion-item>
+                            <ion-label style="width:37%;">
+                                <i class="fal fa-phone"></i>
+                                شماره تماس</ion-label>
+                            <ion-input type="number" formControlName="customer_mobile" text-center></ion-input>
+                        </ion-item>
+                        <ng-container *ngFor="let validation of validation_msg.mobile">
+                            <div class="error-msg" *ngIf="baseForm.get('customer_mobile').hasError(validation.type) && 
+                                (baseForm.get('customer_mobile').dirty || baseForm.get('customer_mobile').touched)">{{validation.message}}</div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-row float-right>
+            <ion-col>
+                <ion-label color="danger" *ngIf="baseForm.invalid" style="font-size:1.2rem;padding-right:2em;">
+                    <span ion-text color="file">*</span>
+                    <span>
+                        شماره همراه الزامی است
+                    </span>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row float-left>
+            <button ion-button icon-end round clear [disabled]="baseForm.invalid" (click)="show_card = !show_card">
+                <span style="font-weight: bold;">مرحله بعد</span>
+                <ion-icon>
+                    <i class="fal fa-arrow-left" style="font-weight: bold;" ion-text color="danger"></i>
+                </ion-icon>
+            </button>
+        </ion-row>
+    </ion-card>
+    <ion-card *ngIf="show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
+        no-padding no-margin>
+        <ion-card-header style="background: #E6782B;
+                    background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
+                    background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+            <span ion-text color="light">
+                <i class="fal fa-id-card" style="padding-left:3px;"></i>
+            </span>
+            <span ion-text color="light">شرح شکایت</span>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid [formGroup]="textForm">
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-file-alt"></i>
+                                عنوان شکایت</ion-label>
+                            <ion-input formControlName="msg_title" type="text" text-right></ion-input>
+                        </ion-item>
+                        <ng-container *ngFor="let validation of validation_msg.global">
+                            <div class="error-msg" *ngIf="textForm.get('msg_title').hasError(validation.type) && 
+                                (textForm.get('msg_title').dirty || textForm.get('msg_title').touched)">{{validation.message}}</div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label floating>
+                                <i class="fal fa-book-open"></i>
+                                متن شکایت</ion-label>
+                            <ion-textarea formControlName="msg_text" type="text" rows="6" text-right></ion-textarea>
+                        </ion-item>
+                        <ng-container *ngFor="let validation of validation_msg.global">
+                            <div class="error-msg" *ngIf="textForm.get('msg_text').hasError(validation.type) && 
+                                (textForm.get('msg_text').dirty || textForm.get('msg_text').touched)">{{validation.message}}</div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row float-right no-margin>
+                    <ion-col no-padding no-margin>
+                        <ion-label color="danger" *ngIf="textForm.invalid" style="font-size:1.2rem;padding-right:2em;">
+                            <span ion-text color="file">*</span>
+                            <span>
+                                تکمیل تمام اطلاعات الزامی است
+                            </span>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-4>
+                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="send_way_photo()"
+                            class="center">
+                            <i class="fal fa-image" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
+                            <span>ارسال تصویر</span>
+                        </button>
+                    </ion-col>
+                    <ion-col col-4>
+                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getVideo()"
+                            class="center">
+                            <i class="fal fa-video" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
+                            <span>ارسال فیلم</span>
+                        </button>
+                    </ion-col>
+                    <ion-col col-4>
+                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getSound()"
+                            class="center">
+                            <i class="fal fa-microphone" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
+                            <span>ارسال صوت</span>
+                        </button>
+                    </ion-col>
+                </ion-row>
+                <ion-row float-right no-margin>
+                    <ion-col no-padding no-margin>
+                        <ion-label color="danger" *ngIf="file_status" style="font-size:1.2rem;padding-right:2em;">
+                            <span ion-text color="file">*</span>
+                            <span>
+                                {{file_status}}
+                            </span>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer>
+    <img src="./assets/imgs/arrow.svg" *ngIf="textForm.valid" class="exam-arrow">
+    <button full block large (click)="save()" *ngIf="textForm.valid && show_card" style="font-size:1.5rem;" 
+        [disabled]="textForm.invalid"
+        ion-button icon-start no-padding no-margin color="file">
+        <i class="fal fa-save" style="font-weight: bold;padding-left:3px;" ion-text color="secondary"></i>
+        <span>ذخیره و ارسال به واحد حراست</span>
+    </button>
+</ion-footer>

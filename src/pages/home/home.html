@@ -1,16 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <ion-grid no-padding>
-      <ion-row justify-content-center>
+    <ion-grid no-margin no-padding>
+      <ion-row justify-content-center >
         <ion-col class="center">
-            <ion-avatar>
-              <img src="../assets/imgs/assistant.svg" class="title-image">
-            </ion-avatar>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="title-text center" text-center>
-          <span>همیار ملی</span>
+          <img src="../assets/imgs/logo.png" class="title-image-logo">
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -26,7 +19,7 @@
       <ion-col>
         <div class="menu">
           <div class="border-bottom" (click)="gotToBazrasi()">
-              <img src="../assets/imgs/bazrasi.svg" class="icon">
+            <img src="../assets/imgs/bazrasi.svg" class="icon">
             <br/>
             <label>ارتباط با بازرسی</label>
           </div>
@@ -36,7 +29,7 @@
     <ion-row justify-content-center>
       <ion-col>
         <div class="menu">
-          <div class="border-bottom">
+          <div class="border-bottom" (click)="gotToSecurity()">
             <img src="../assets/imgs/herasat.svg" class="icon">
             <br/>
             <label>ارتباط با حراست</label>
@@ -78,9 +71,9 @@
   </ion-grid>
 </ion-content>
 <ion-footer no-border>
-    <ion-toolbar transparent>
-        <ion-avatar class="center">
-          <img src="../assets/imgs/bmi.png" style="width:100%;height:auto;max-width:36px;">
-        </ion-avatar>
-      </ion-toolbar>
+  <ion-toolbar transparent>
+    <ion-avatar class="center">
+      <img src="../assets/imgs/bmi.png" class="bmi-icon">
+    </ion-avatar>
+  </ion-toolbar>
 </ion-footer>

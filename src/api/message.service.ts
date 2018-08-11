@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
+import { ToastController } from "ionic-angular";
 
 @Injectable({
     providedIn: 'root',
 })
 export class MessageService {
     //----------------------------------------------------------------------
-    constructor(){}
+    constructor(public toastCtrl: ToastController) { }
     //----------------------------------------------------------------------
     validation_msg = {
-        'global':[
+        'global': [
             { type: 'required', message: 'الزامی' },
         ],
         'mobile': [
@@ -30,8 +30,17 @@ export class MessageService {
         ]
     }
     //----------------------------------------------------------------------   
-    public get_message(){
+    public get_message() {
         return this.validation_msg;
     }
     //----------------------------------------------------------------------   
+    showToast(msg) {
+        let toast = this.toastCtrl.create({
+            message: msg,
+            duration: 3000,
+            position: 'bottom',
+            cssClass: 'toastCss'
+        });
+        toast.present();
+    }
 }

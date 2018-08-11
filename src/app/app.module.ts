@@ -9,6 +9,13 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { MediaCapture, } from '@ionic-native/media-capture';
+import { Camera } from '@ionic-native/camera';
+import { Keyboard } from '@ionic-native/keyboard';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { HeaderColor } from '@ionic-native/header-color';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +41,12 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    Keyboard,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    FileTransfer,
+    FileTransferObject,
+    Camera,
+    MediaCapture, AndroidPermissions,HeaderColor
   ]
 })
 export class AppModule { }

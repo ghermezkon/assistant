@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     providedIn: 'root',
 })
 export class HttpService {
-    urlPoint: any = 'http://82.102.10.253:5001/api/';
+    urlPoint: any = 'http://localhost:5001/api/';
     urlApp: any = 'bmi_customer/';
     headers: any;
     //----------------------------------------------------------------------
@@ -37,4 +37,7 @@ export class HttpService {
         return this.http.put(this.urlPoint + this.urlApp, data);
     }
     //----------------------------------------------------------------------   
+    get_branch_kishik(){
+        return this.http.get(this.urlPoint + this.urlApp + 'branch_kishik')
+    }
 }

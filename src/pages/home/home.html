@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-grid no-margin no-padding>
-      <ion-row justify-content-center >
+      <ion-row justify-content-center>
         <ion-col class="center">
           <img src="../assets/imgs/logo.png" class="title-image-logo">
         </ion-col>
@@ -18,7 +18,7 @@
     <ion-row justify-content-center>
       <ion-col>
         <div class="menu">
-          <div class="border-bottom" (click)="gotToBazrasi()">
+          <div class="border-bottom" (click)="goToBazrasi()">
             <img src="../assets/imgs/bazrasi.svg" class="icon">
             <br/>
             <label>ارتباط با بازرسی</label>
@@ -29,7 +29,7 @@
     <ion-row justify-content-center>
       <ion-col>
         <div class="menu">
-          <div class="border-bottom" (click)="gotToSecurity()">
+          <div class="border-bottom" (click)="goToSecurity()">
             <img src="../assets/imgs/herasat.svg" class="icon">
             <br/>
             <label>ارتباط با حراست</label>
@@ -38,41 +38,42 @@
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
-      <ion-col col-6>
+      <ion-col col-4>
         <div class="menu">
-          <div class="border-bottom">
-            <img src="../assets/imgs/suggest.svg" class="icon">
-            <br/>
-            <label>پیشنهادات</label>
-          </div>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="menu">
-          <div class="border-right border-bottom">
-            <img src="../assets/imgs/survey.svg" class="icon">
-            <br/>
-            <label>شرکت در نظرسنجی</label>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row justify-content-center>
-      <ion-col col-6>
-        <div class="menu">
-          <div class="border-bottom">
+          <div class="border-bottom" (click)="goToKishik()">
             <img src="../assets/imgs/branch.svg" class="icon">
             <br/>
             <label>شعب کشیک</label>
           </div>
         </div>
       </ion-col>
+      <ion-col col-4>
+        <div class="menu">
+          <div class="border-bottom" (click)="goToPishnahad()">
+            <img src="../assets/imgs/suggest.svg" class="icon">
+            <br/>
+            <label>پیشنهادات</label>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="menu">
+          <div class="border-right border-bottom" (click)="goToSurvey()">
+            <img src="../assets/imgs/survey.svg" class="icon">
+            <br/>
+            <label>نظرسنجی</label>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+
     </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer no-border>
   <ion-toolbar transparent>
-    <ion-avatar class="center">
+    <ion-avatar class="center" (click)="presentMenu()">
       <img src="../assets/imgs/bmi.png" class="bmi-icon">
     </ion-avatar>
   </ion-toolbar>

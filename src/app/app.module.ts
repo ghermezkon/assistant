@@ -15,11 +15,12 @@ import { Camera } from '@ionic-native/camera';
 import { Keyboard } from '@ionic-native/keyboard';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { HeaderColor } from '@ionic-native/header-color';
+import { BmiTaskPage } from '../pages/home/task/bmi.task';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage, TabsPage
+    HomePage, TabsPage, BmiTaskPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,7 @@ import { HeaderColor } from '@ionic-native/header-color';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage, TabsPage
+    HomePage, TabsPage, BmiTaskPage,
   ],
   providers: [
     StatusBar,

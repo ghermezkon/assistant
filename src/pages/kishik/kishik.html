@@ -1,0 +1,39 @@
+<ion-header no-border class="center">
+    <ion-navbar text-center>
+        <ion-title>
+            <ion-searchbar text-right [(ngModel)]="input_search" placeholder="نام شعبه"></ion-searchbar>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="main-bg">
+    <ion-list [virtualScroll]="kishik_list | async | filterPipe: input_search" [approxItemHeight]="'40px'">
+        <ion-item *virtualItem="let t">
+            <ion-avatar item-start>
+                <i class="fal fa-map-marker-alt fa-2x"></i>
+            </ion-avatar>
+            <h2>شعبه:
+                <span>{{t.branch_name}} </span>
+                <span style="font-size:1.3rem;">(
+                    <span>{{t.branch_code}}</span> )</span>
+            </h2>
+            <ng-container *ngFor="let k of t.detail.kishik.kishik_type">
+                <p style="font-size:1.3rem;">
+                    <ion-note>
+                        <ion-grid no-padding no-margin>
+                            <ion-row>
+                                <ion-col>
+                                    {{k.kishik_name}}
+                                </ion-col>
+                                <ion-col>
+                                    <span>
+                                        (از ساعت: {{k.kishik_end}} الی: {{k.kishik_start}})
+                                    </span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-note>
+                </p>
+            </ng-container>
+        </ion-item>
+    </ion-list>
+</ion-content>

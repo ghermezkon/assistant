@@ -87,15 +87,10 @@ ion-loading.my-svg-loading {
   color: map-get($colors , light) !important;
   text-align: center !important;
 }
-// ion-alert > div.alert-wrapper{
-//   border-radius: 2px !important;
-// }
-// ion-alert > div.alert-wrapper >  div.alert-head{
-//   background-color:map-get($colors, primary) !important;
-//   color:map-get($colors, light) !important;
-//   border-top-left-radius: 2px !important;
-//   border-top-right-radius: 2px !important;
-// }
+input.searchbar-input{
+  direction:rtl !important;
+  text-align:right !important;
+}
 //--------------------------------------------------------------------------
 ion-item.transparent  {
   background: rgba(0, 0, 0, 0) !important;

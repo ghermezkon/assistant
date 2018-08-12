@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import * as _ from 'lodash';
 import { ToastController } from "ionic-angular";
 
 @Injectable({

@@ -46,14 +46,16 @@ export class BazrasiPage {
             customer_mobile: ['', Validators.compose([CustomValidator.isMobile, Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
             customer_msg: this.fb.group({
                 msg_title: [''],
-                msg_text: ['']
+                msg_text: [''],
+                msg_admin: ['null']
             }),
             token: [''],
             photo_name: [''],
             video_name: [''],
             sound_name: [''],
             send_date: [''],
-            msg_type: ['']
+            msg_type: [''],
+            res_date: ['null']
         })
         this.textForm = this.fb.group({
             msg_title: ['', Validators.required],

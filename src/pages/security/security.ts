@@ -13,7 +13,7 @@ import { AndroidPermissions } from "@ionic-native/android-permissions";
     selector: 'security-page',
     templateUrl: 'security.html'
 })
-export class SecurityPage{
+export class SecurityPage {
     show_card: boolean = false;
     baseForm: FormGroup;
     textForm: FormGroup;
@@ -30,7 +30,7 @@ export class SecurityPage{
     constructor(public fb: FormBuilder, public _msg: MessageService, public alertCtrl: AlertController,
         public _http: HttpService, public toastCtrl: ToastController, public navCtrl: NavController,
         private transfer: FileTransfer, private mediaCapture: MediaCapture, private androidPermissions: AndroidPermissions,
-        private camera: Camera, public _loader: LoaderService, public actionSheetCtrl: ActionSheetController){}
+        private camera: Camera, public _loader: LoaderService, public actionSheetCtrl: ActionSheetController) { }
     //-------------------------------------------------------------
     ionViewWillLoad() {
         this.validation_msg = this._msg.get_message();
@@ -45,14 +45,16 @@ export class SecurityPage{
             customer_mobile: ['', Validators.compose([CustomValidator.isMobile, Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
             customer_msg: this.fb.group({
                 msg_title: [''],
-                msg_text: ['']
+                msg_text: [''],
+                msg_admin: ['null']
             }),
             token: [''],
             photo_name: [''],
             video_name: [''],
             sound_name: [''],
             send_date: [''],
-            msg_type: ['']
+            msg_type: [''],
+            res_date: ['null']
         })
         this.textForm = this.fb.group({
             msg_title: ['', Validators.required],
@@ -150,7 +152,7 @@ export class SecurityPage{
                     let options: FileUploadOptions = {
                         fileKey: 'file',
                         //fileName: this.baseForm.get('customer_mobile').value + '.' + data[0].name.split('.')[1],
-                        fileName: 'security'+ '.' + data[0].name.split('.')[1],
+                        fileName: 'security' + '.' + data[0].name.split('.')[1],
                         chunkedMode: false,
                     }
                     this._loader.show().present().then(() => {
@@ -187,7 +189,7 @@ export class SecurityPage{
                     let options: FileUploadOptions = {
                         fileKey: 'file',
                         //fileName: this.baseForm.get('customer_mobile').value + '.' + data1[0].name.split('.')[1],
-                        fileName:'security'+ '.' + data1[0].name.split('.')[1],
+                        fileName: 'security' + '.' + data1[0].name.split('.')[1],
                         chunkedMode: false,
                     }
                     this._loader.show().present().then(() => {

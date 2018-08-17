@@ -32,4 +32,29 @@ export class CustomValidator {
             }
         }
     }
+    //-------------------------------------------------------------------------------
+    static isCodeMeli(code: FormControl) {
+        if (code.value !== '' && code.value.length == 10) {
+            let meli: any = code.value.toString();
+            const count = (str, ch) => _.sumBy(str, x => x === ch);
+            if (count(code.value, '1') == 10 ||
+                count(code.value, '2') == 10 ||
+                count(code.value, '3') == 10 ||
+                count(code.value, '4') == 10 ||
+                count(code.value, '5') == 10 ||
+                count(code.value, '6') == 10 ||
+                count(code.value, '7') == 10 ||
+                count(code.value, '8') == 10 ||
+                count(code.value, '9') == 10) return ({ isCodeMeli: true });
+
+            if (code.value.substring(0, 3) === '000') return ({ isCodeMeli: true });
+            var sum = 0;
+            for (var i = 0; i < 9; i++) {
+                sum += (meli.charAt(i) * (10 - i))
+            }
+            sum = sum % 11;
+            if ((sum < 2 && meli.charAt(9) == sum) || (sum >= 2 && meli.charAt(9) == (11 - sum))) return null;
+            else return ({ isCodeMeli: true });
+        }
+    }
 }

@@ -23,6 +23,7 @@ export class MessageService {
             { type: 'required', message: 'الزامی' },
             { type: 'minlength', message: 'حداقل تعداد ارقام کد ملی باید 10 باشد' },
             { type: 'maxlength', message: 'کد ملی بیشتر از 10 عدد مجاز نمی باشد' },
+            { type: 'isCodeMeli', message: 'کد ملی اشتباه است' },
         ],
         'password': [
             { type: 'MatchPassword', message: 'رمز عبور همخوانی ندارد' }

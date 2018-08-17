@@ -15,7 +15,7 @@ body
   width: 100% !important;
   height: 100% !important;
   direction:rtl !important;
-  font-size: 0.7rem !important;
+  font-size: 0.6rem !important;
 }
 //-----------------IONIC Component-----------------------------------------
 .toolbar-background{
@@ -97,4 +97,26 @@ ion-item.transparent  {
   border: none !important;
   outline: none !important;
   direction:rtl;
+}
+//-------------------------AlertController-----------------------------------------------
+ion-alert > div.alert-wrapper{
+  border-radius: 10px !important;
+}
+h2.alert-title{
+  font-size:1.6rem !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+} 
+div.alert-message{
+  padding-top:1em !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  word-wrap: break-word !important;
+  overflow: hidden;
+}
+ion-alert > div.alert-wrapper >  div.alert-head{
+  background-color:map-get($colors, secondary) !important;
+  color:map-get($colors, light) !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
 }

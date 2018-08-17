@@ -142,22 +142,29 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
+                    <ion-col col-12 *ngIf="progress != 0 && progress != 100">
+                        <div class="progress-outer" style="width:100%;">
+                            <div class="progress-inner" [style.width]="progress + '%'" style="width:100%;">
+                                {{progress}}%
+                            </div>
+                        </div>
+                    </ion-col>
                     <ion-col col-4>
-                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="send_way_photo()"
+                        <button ion-button full icon-end *ngIf="textForm.valid && progress == 0 && photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="send_way_photo()"
                             class="center">
                             <i class="fal fa-image" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
                             <span>ارسال تصویر</span>
                         </button>
                     </ion-col>
                     <ion-col col-4>
-                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getVideo()"
+                        <button ion-button full icon-end *ngIf="textForm.valid && progress == 0 && photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getVideo()"
                             class="center">
                             <i class="fal fa-video" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
                             <span>ارسال فیلم</span>
                         </button>
                     </ion-col>
                     <ion-col col-4>
-                        <button ion-button full icon-end *ngIf="photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getSound()"
+                        <button ion-button full icon-end *ngIf="textForm.valid && progress == 0 && photo_name == 'null' && video_name == 'null' && sound_name == 'null'" (click)="getSound()"
                             class="center">
                             <i class="fal fa-microphone" style="padding-left:3px;font-size:1.8rem;" ion-text color="secondary"></i>
                             <span>ارسال صوت</span>
@@ -179,8 +186,8 @@
     </ion-card>
 </ion-content>
 <ion-footer>
-    <img src="./assets/imgs/arrow.svg" *ngIf="textForm.valid" class="exam-arrow">
-    <button full block large (click)="save()" *ngIf="textForm.valid && show_card" style="font-size:1.5rem;" [disabled]="textForm.invalid"
+    <img src="./assets/imgs/arrow.svg" *ngIf="textForm.valid && show_card && (progress == 0 || progress == 100)" class="exam-arrow">
+    <button full block large (click)="save()" *ngIf="textForm.valid && show_card && (progress == 0 || progress == 100)" style="font-size:1.5rem;" [disabled]="textForm.invalid"
         ion-button icon-start no-padding no-margin color="file">
         <i class="fal fa-save" style="font-weight: bold;padding-left:3px;" ion-text color="secondary"></i>
         <span>ذخیره و ارسال به بازرسی</span>

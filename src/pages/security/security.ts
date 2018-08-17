@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, NgZone } from "@angular/core";
 import { IonicPage, ToastController, AlertController, NavController, ActionSheetController } from "ionic-angular";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CustomValidator, MessageService, HttpService, LoaderService } from "../../api/index";
@@ -18,6 +18,7 @@ export class SecurityPage {
     baseForm: FormGroup;
     textForm: FormGroup;
     validation_msg: any;
+    public progress: number = 0;
     //-------------------------------------------------------------
     imageURI: any;
     imageFileName: any;
@@ -28,7 +29,7 @@ export class SecurityPage {
     sound_name: any = 'null';
     //-------------------------------------------------------------
     constructor(public fb: FormBuilder, public _msg: MessageService, public alertCtrl: AlertController,
-        public _http: HttpService, public toastCtrl: ToastController, public navCtrl: NavController,
+        public _http: HttpService, public toastCtrl: ToastController, public navCtrl: NavController, public ng_zone: NgZone,
         private transfer: FileTransfer, private mediaCapture: MediaCapture, private androidPermissions: AndroidPermissions,
         private camera: Camera, public _loader: LoaderService, public actionSheetCtrl: ActionSheetController) { }
     //-------------------------------------------------------------
@@ -108,20 +109,30 @@ export class SecurityPage {
     }
     //-------------------------------------------------------------
     uploadFile() {
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        let options: FileUploadOptions = {
+            fileKey: 'file',
+            //fileName: this.baseForm.get('customer_mobile').value + '.jpg',
+            fileName: 'security.jpg',
+            chunkedMode: false,
+        }
+        fileTransfer.onProgress((progressEvent: ProgressEvent) => {
+            this.ng_zone.run(() => {
+                if (progressEvent.lengthComputable) {
+                    let progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                    if (progress > 100) progress = 100;
+                    if (progress < 0) progress = 0;
+                    this.progress = progress;
+                }
+            });
+        });
         this._loader.show().present().then(() => {
-            const fileTransfer: FileTransferObject = this.transfer.create();
-            let options: FileUploadOptions = {
-                fileKey: 'file',
-                //fileName: this.baseForm.get('customer_mobile').value + '.jpg',
-                fileName: 'security.jpg',
-                chunkedMode: false,
-            }
             fileTransfer.upload(this.imageURI, encodeURI(this._http.getUrlFile()), options)
                 .then((data) => {
                     this.token = data.response.split('.')[0].split('-')[1];
                     this.photo_name = data.response;
                     if (data.responseCode == 200) {
-                        this.file_status = 'فایل ارسال گردید';
+                        this.file_status = 'فایل ضمیمه گردید';
                         this._msg.showToast('فایل ارسال گردید، جهت ادامه بر روی دکمه ذخیره کلیک نمائید');
                         this._loader.hide();
                     } else {
@@ -137,47 +148,59 @@ export class SecurityPage {
     }
     //-------------------------------------------------------------
     getVideo() {
-        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-            result => {
-                this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA,
-                this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE, this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE])
-            },
-            err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
-        );
-        let options: CaptureVideoOptions = { limit: 1, duration: 10, quality: 1 };
-        this.mediaCapture.captureVideo(options)
-            .then(
-                (data: MediaFile[]) => {
-                    const fileTransfer: FileTransferObject = this.transfer.create();
-                    let options: FileUploadOptions = {
-                        fileKey: 'file',
-                        //fileName: this.baseForm.get('customer_mobile').value + '.' + data[0].name.split('.')[1],
-                        fileName: 'security' + '.' + data[0].name.split('.')[1],
-                        chunkedMode: false,
-                    }
-                    this._loader.show().present().then(() => {
-
-                        fileTransfer.upload(data[0].fullPath, encodeURI(this._http.getUrlFile()), options)
-                            .then((data) => {
-                                this.token = data.response.split('.')[0].split('-')[1];
-                                this.video_name = data.response;
-                                if (data.responseCode == 200) {
-                                    this.file_status = 'فایل ارسال گردید';
-                                    this._msg.showToast('فایل ارسال گردید، جهت ادامه بر روی دکمه ذخیره کلیک نمائید');
-                                    this._loader.hide();
-                                } else {
-                                    this.file_status = 'خطا در ارسال فایل';
-                                    this._msg.showToast('خطا در ارسال فایل');
-                                    this._loader.hide();
-                                }
-                            }, (err) => {
-                                this._msg.showToast('خطا در فراخوانی فیلم');
-                                this._loader.hide();
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE).then((res: any) => {
+            if (res.hasPermission) {
+                let options: CaptureVideoOptions = { limit: 1, duration: 10, quality: 0 };
+                this.mediaCapture.captureVideo(options)
+                    .then(
+                        (data: MediaFile[]) => {
+                            const fileTransfer: FileTransferObject = this.transfer.create();
+                            let options: FileUploadOptions = {
+                                fileKey: 'file',
+                                //fileName: this.baseForm.get('customer_mobile').value + '.' + data[0].name.split('.')[1],
+                                fileName: 'security' + '.' + data[0].name.split('.')[1],
+                                chunkedMode: false,
+                            }
+                            fileTransfer.onProgress((progressEvent: ProgressEvent) => {
+                                this.ng_zone.run(() => {
+                                    if (progressEvent.lengthComputable) {
+                                        let progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                                        if (progress > 100) progress = 100;
+                                        if (progress < 0) progress = 0;
+                                        this.progress = progress;
+                                    }
+                                });
                             });
-                    });
-                },
-                (err: CaptureError) => console.error(err)
-            );
+                            this._loader.show().present().then(() => {
+                                fileTransfer.upload(data[0].fullPath, encodeURI(this._http.getUrlFile()), options)
+                                    .then((data) => {
+                                        this.token = data.response.split('.')[0].split('-')[1];
+                                        this.video_name = data.response;
+                                        if (data.responseCode == 200) {
+                                            this.file_status = 'فایل ضمیمه گردید';
+                                            this._msg.showToast('فایل ارسال گردید، جهت ادامه بر روی دکمه ذخیره کلیک نمائید');
+                                            this._loader.hide();
+                                        } else {
+                                            this.file_status = 'خطا در ارسال فایل';
+                                            this._msg.showToast('خطا در ارسال فایل');
+                                            this._loader.hide();
+                                        }
+                                    }, (err) => {
+                                        this._msg.showToast('خطا در فراخوانی فیلم');
+                                        this._loader.hide();
+                                    });
+                            });
+                        },
+                        (err: CaptureError) => console.error(err)
+                    );
+            } else {
+                this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE]).then((newRes: any) => {
+                    if (newRes.hasPermission)
+                        this._msg.showToast('دسترسی به دوربین صادر گردید');
+                    else this._msg.showToast('اجازه دسترسی به دوربین داده نشد');
+                });
+            }
+        });
     }
     //-------------------------------------------------------------
     getSound() {
@@ -192,8 +215,17 @@ export class SecurityPage {
                         fileName: 'security' + '.' + data1[0].name.split('.')[1],
                         chunkedMode: false,
                     }
+                    fileTransfer.onProgress((progressEvent: ProgressEvent) => {
+                        this.ng_zone.run(() => {
+                            if (progressEvent.lengthComputable) {
+                                let progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                                if (progress > 100) progress = 100;
+                                if (progress < 0) progress = 0;
+                                this.progress = progress;
+                            }
+                        });
+                    });
                     this._loader.show().present().then(() => {
-
                         fileTransfer.upload(data1[0].fullPath, encodeURI(this._http.getUrlFile()), options)
                             .then((data) => {
                                 this.token = data.response.split('.')[0].split('-')[1];
@@ -233,7 +265,8 @@ export class SecurityPage {
                 this._http.save(data).subscribe((json: any) => {
                     if (json.result.n >= 1) {
                         const alert = this.alertCtrl.create({
-                            message: 'با تشکر از حسن نیت شما - شماره پیگیری: ' + json.ops[0].token,
+                            title: 'شماره پیگیری: ' + json.ops[0].token,
+                            message: 'با تشکر از حسن نیت شما',
                             enableBackdropDismiss: false,
                             buttons: [{
                                 text: 'تائید',

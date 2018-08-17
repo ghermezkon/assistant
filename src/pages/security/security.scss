@@ -1,3 +1,16 @@
 security-page{
-    
+    .progress-outer {
+        text-align: center;
+        background-color: #f4f4f4;
+        border: 1px solid #dcdcdc;
+        color: #fff;
+        border-radius: 4px;
+    }
+ 
+    .progress-inner {
+        overflow: hidden;
+        padding: 5px;
+        border-radius: 4px;
+        background-color: map-get($colors, secondary);
+    }
 }

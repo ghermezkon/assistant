@@ -15,12 +15,9 @@
         </ion-grid>
     </ion-navbar>
 </ion-header>
-<ion-content style="background-color:#455A64;">
-    <ion-card *ngIf="!show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
-        no-padding no-margin>
-        <ion-card-header style="background: #E6782B;
-                background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
-                background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+<ion-content class="page-content">
+    <ion-card *ngIf="!show_card" class="card-position" no-padding no-margin>
+        <ion-card-header class="header" text-center>
             <span ion-text color="light">
                 <i class="fal fa-id-card" style="padding-left:3px;"></i>
             </span>
@@ -70,11 +67,8 @@
             </button>
         </ion-row>
     </ion-card>
-    <ion-card *ngIf="show_card" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);border-radius: 5px;"
-        no-padding no-margin>
-        <ion-card-header style="background: #E6782B;
-                    background: -webkit-linear-gradient(to right, #FCB919, #E6782B);
-                    background: linear-gradient(to right, #FCB919, #E6782B);" text-center>
+    <ion-card *ngIf="show_card" class="card-position" no-padding no-margin>
+        <ion-card-header class="header" text-center>
             <span ion-text color="light">
                 <i class="fal fa-id-card" style="padding-left:3px;"></i>
             </span>

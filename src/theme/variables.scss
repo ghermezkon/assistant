@@ -10,14 +10,14 @@ $app-direction: rtl;
 @import "ionic.globals";
 
 $colors: (
-  primary:    #455A64,
-  //primary:    #E6782B,
-  //secondary:  #FCB919,
-  secondary: #E6782B,
+  //primary:    #455A64,
+  // secondary: #E6782B,
+  primary: #546E7A,
+  secondary: #D81B60,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #455A64,
-  file:       #009688,
+  file:       #FFC107,
   borderColor: rgb(247, 247, 247) 
 );
 @import "ionic.theme.default";

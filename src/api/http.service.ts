@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     providedIn: 'root',
 })
 export class HttpService {
-    urlPoint: any = 'http://82.102.10.253:5001/api/';
+    urlPoint: any = 'http://78.39.200.171:443/api/';
     urlApp: any = 'bmi_customer/';
     headers: any;
     //----------------------------------------------------------------------

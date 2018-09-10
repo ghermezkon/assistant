@@ -261,9 +261,9 @@ export class BazrasiPage {
                 data.send_date = Date.now();
                 data.msg_type = 'bazrasi';
                 this._http.save(data).subscribe((json: any) => {
-                    if (json.result.n >= 1) {
+                    if (json) {
                         const alert = this.alertCtrl.create({
-                            title: 'شماره پیگیری: ' + json.ops[0].token,
+                            title: 'شماره پیگیری: ' + json.token,
                             message: 'با تشکر از حسن نیت شما',
                             enableBackdropDismiss: false,
                             buttons: [{

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, App, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
-import { HeaderColor } from '@ionic-native/header-color';
 
 import { HomePage } from '../pages/home/home';
 @Component({
@@ -12,15 +10,13 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   rootPage: any = HomePage;
 
-  constructor(public app: App, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, keyboard: Keyboard, private headerColor: HeaderColor) {
+  constructor(public app: App, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, keyboard: Keyboard) {
     platform.ready().then(() => {
       keyboard.disableScroll(true);
       keyboard.hideKeyboardAccessoryBar(false);
       statusBar.overlaysWebView(false);
       statusBar.styleDefault();
       statusBar.backgroundColorByName('purple');
-      //this.headerColor.tint('#D81B60');
-      splashScreen.hide();
       platform.registerBackButtonAction((e) => {
         let nav = this.app.getActiveNavs()[0];
         if (nav.canGoBack()) {

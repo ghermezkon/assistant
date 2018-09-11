@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
@@ -14,7 +13,6 @@ import { MediaCapture, } from '@ionic-native/media-capture';
 import { Camera } from '@ionic-native/camera';
 import { Keyboard } from '@ionic-native/keyboard';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { HeaderColor } from '@ionic-native/header-color';
 import { BmiTaskPage } from '../pages/home/task/bmi.task';
 
 @NgModule({
@@ -41,13 +39,12 @@ import { BmiTaskPage } from '../pages/home/task/bmi.task';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
     Keyboard,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FileTransfer,
     FileTransferObject,
     Camera,
-    MediaCapture, AndroidPermissions,HeaderColor
+    MediaCapture, AndroidPermissions
   ]
 })
 export class AppModule { }

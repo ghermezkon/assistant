@@ -5,3 +5,9 @@ $roboto-font-path: $font-path !default;
   font-weight: 200;
   src:url("#{$roboto-font-path}/IRANSansMobile(FaNum)_Light.ttf") format("truetype");
 }
+@font-face {
+  font-family: "IRANSans_Bold";
+  font-style: normal;
+  font-weight: 200;
+  src:url("#{$roboto-font-path}/IRANSansMobile_Bold.ttf") format("truetype");
+}

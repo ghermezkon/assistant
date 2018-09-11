@@ -35,7 +35,6 @@
     "cordova-browser": "5.0.4",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-camera": "^4.0.3",
-    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
@@ -70,14 +69,7 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-media-capture": {},
       "cordova-plugin-android-permissions": {},
-      "cordova-plugin-headercolor": {},
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      }
+      "cordova-plugin-headercolor": {}
     },
     "platforms": [
       "browser",

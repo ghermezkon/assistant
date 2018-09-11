@@ -14,13 +14,13 @@ export class MyApp {
 
   constructor(public app: App, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, keyboard: Keyboard, private headerColor: HeaderColor) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
       keyboard.disableScroll(true);
       keyboard.hideKeyboardAccessoryBar(false);
       statusBar.overlaysWebView(false);
-      statusBar.backgroundColorByHexString('#E6782B');
-      this.headerColor.tint('#E6782B');
+      statusBar.styleDefault();
+      statusBar.backgroundColorByName('purple');
+      //this.headerColor.tint('#D81B60');
+      splashScreen.hide();
       platform.registerBackButtonAction((e) => {
         let nav = this.app.getActiveNavs()[0];
         if (nav.canGoBack()) {

@@ -32,6 +32,7 @@ body
 .title-text{
   color: map-get($colors, light);
   font-size:1.8rem;
+  margin-right: 0.4em;
 }
 .title-image-logo{
   padding-top: 10px;
@@ -78,11 +79,11 @@ ion-loading.my-svg-loading {
     box-shadow: none;
   }
 }
+
 .action-sheet-title{
   background: map-get($colors, secondary) !important;
-  // background: -webkit-linear-gradient(to right, #FCB919, #E6782B) !important;
-  // background: linear-gradient(to right, #FCB919, #E6782B) !important;
-  color: map-get($colors , primary) !important;
+  color: map-get($colors , light) !important;
+  font-family: 'IRANSans_Bold';
   text-align: center !important;
 }
 input.searchbar-input{

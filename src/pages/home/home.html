@@ -8,7 +8,7 @@
           </ion-avatar>
         </ion-col>
         <ion-col col-6 style="display: flex;justify-content: flex-end;align-items: center;">
-          <span ion-text color="light" style="font-size:1.9rem;font-weight:bold;">
+          <span ion-text color="light" style="font-size:1.9rem;font-family:IRANSans_Bold;">
             همیار ملی
           </span>
           <ion-avatar>
@@ -28,19 +28,19 @@
     <ion-row justify-content-center style="padding-top:10vh">
       <ion-col>
         <div class="menu">
-          <div class="border-bottom border-left" (click)="goToBazrasi()">
+          <div class="border-left" (click)="goToBazrasi()">
             <img class="bazrasi">
             <br/>
-            <label>ارتباط با بازرسی</label>
+            <label class="label">ارتباط با بازرسی</label>
           </div>
         </div>
       </ion-col>
       <ion-col>
         <div class="menu">
-          <div class="border-bottom" (click)="goToSecurity()">
+          <div (click)="goToSecurity()">
             <img class="security">
             <br/>
-            <label>ارتباط با حراست</label>
+            <label class="label">ارتباط با حراست</label>
           </div>
         </div>
       </ion-col>
@@ -49,28 +49,28 @@
     <ion-row justify-content-center style="padding-top:10vh">
       <ion-col col-4>
         <div class="menu">
-          <div class="border-bottom border-left" (click)="goToKishik()">
+          <div class="border-left" (click)="goToKishik()">
             <img class="kishik">
             <br/>
-            <label>شعب کشیک</label>
+            <label class="label">شعب کشیک</label>
           </div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div class="menu">
-          <div class="border-bottom" (click)="goToPishnahad()">
+          <div (click)="goToPishnahad()">
             <img class="suggest">
             <br/>
-            <label>پیشنهادات</label>
+            <label class="label">پیشنهادات</label>
           </div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div class="menu">
-          <div class="border-right border-bottom" (click)="goToSurvey()">
+          <div class="border-right" (click)="goToSurvey()">
             <img class="survey">
             <br/>
-            <label>نظرسنجی</label>
+            <label class="label">نظرسنجی</label>
           </div>
         </div>
       </ion-col>

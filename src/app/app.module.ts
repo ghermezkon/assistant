@@ -24,7 +24,7 @@ import { BmiTaskPage } from '../pages/home/task/bmi.task';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      backButtonText: 'بازگشت',
+      //backButtonText: 'بازگشت',
       scrollPadding: false,
       scrollAssist: true,
       autoFocusAssist: false,

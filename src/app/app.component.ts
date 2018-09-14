@@ -15,8 +15,7 @@ export class MyApp {
       keyboard.disableScroll(true);
       keyboard.hideKeyboardAccessoryBar(false);
       statusBar.overlaysWebView(false);
-      statusBar.styleDefault();
-      statusBar.backgroundColorByName('purple');
+      statusBar.backgroundColorByHexString('#122478')
       platform.registerBackButtonAction((e) => {
         let nav = this.app.getActiveNavs()[0];
         if (nav.canGoBack()) {
@@ -26,7 +25,7 @@ export class MyApp {
             title: '<span style="font-size:0.2rem;">برای خروج از برنامه مطمئن هستید؟</span>',
             buttons: [
               {
-                text: 'خیر',
+                text: 'خير',
                 role: 'cancel',
               },
               {
